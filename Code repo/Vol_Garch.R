@@ -1,6 +1,7 @@
 library(rugarch)
 library(data.table)
 
+# Create get_garch_vol functions 
 get_garch_vol=function(data){
   
   model=ugarchspec(
@@ -13,6 +14,7 @@ get_garch_vol=function(data){
   
   modelfor=ugarchforecast(modelfit, data = NULL, n.ahead = 1, out.sample = 0)
   
+  return(c(sigma(modelfor),coef(modelfit)[1]))
   return(c(sigma(modelfor),coef(modelfit)[1]))
 }
 
